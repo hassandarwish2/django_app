@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-4">
+            <form method="post" class="form-login">
+                {% csrf_token %}
+                <h1>Login</h1>
+                {{ form.non_field_errors }}
+
+
+                    <input type="text" class="form-control input-sm chat-input" placeholder="username" id="usr"
+                    name="{{ form.username.html_name }}" value="{{ form.username.value|default:'' }}">
+                    {{ form.username.errors }}
+                     </br>
+
+
+                    <input type="password" class="form-control input-sm chat-input" placeholder="password" id="pwd"
+                    name="{{ form.password.html_name }}">
+                    {{ form.password.errors }}
+                       </br>
+                    <div class="wrapper">
+                        <span class="group-btn">
+                           <button type="submit" class="btn btn-primary btn-md"> <i class="fa fa-sign-in"></i>  Login</button>
+                        </span>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+                <form method="post" class="col-md-8 offset-md-4">
+                    {% csrf_token %}
+                    <h1>Signup</h1>
+                    {{ form.non_field_errors }}
+                    <div class="form-group">
+                        <label for="usr">Username:</label>
+                        <input type="text" class="form-control" id="usr"
+                        name="{{ form.username.html_name }}" value="{{ form.username.value|default:'' }}">
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd"
+                        name="{{ form.password1.html_name }}">
+                        {{ form.password1.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password:</label>
+                        <input type="password" class="form-control"
+                        name="{{ form.password2.html_name }}">
+                        {{ form.password2.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input type="text" class="form-control"
+                        name="{{ form.first_name.html_name }}" value="{{ form.first_name.value|default:'' }}">
+                        {{ form.first_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input type="text" class="form-control"
+                        name="{{ form.last_name.html_name }}" value="{{ form.last_name.value|default:'' }}">
+                        {{ form.last_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" class="form-control"
+                        name="{{ form.email.html_name }}" value="{{ form.email.value|default:'' }}">
+                        {{ form.email.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Signup</button>
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

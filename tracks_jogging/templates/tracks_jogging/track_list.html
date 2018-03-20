@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block content %}
+    <h1 class="text-center">My Lists</h1>
+<div class="container">
+	<div class="row">
+
+
+        <div class="col-md-10">
+
+           <div class="table-responsive">
+
+
+               <table id="mytable" class="table table-bordred table-striped">
+
+                   <thead>
+                   <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Fliter
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a href="{% url 'filterbyweek' %}">Last week</a></li>
+                          <li><a href="{% url 'filterbymonth' %}">Last month</a></li>
+
+
+                        </ul>
+                      </div>
+                        <a href="{% url 'add-list' %}" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new List</a>
+                        <tr class="backcolor">
+                            <th class="text-center">Num</th>
+                            <th class="text-center">Time</th>
+                             <th class="text-center">Distance</th>
+                             <th class="text-center">Date</th>
+                              <th class="text-center">averge</th>
+                               <th class="text-center">averge</th>
+                            <th class="text-center">Action</th>
+
+                         </tr>
+                   </thead>
+                   <tbody>
+
+                      {% for list in track_list %}
+                            <tr>
+                               <td class="text-center"> {{ forloop.counter }}</td>
+                                <td class="text-center"><a href="#">{{ list.time }}min</a></td>
+                                <td class="text-center"><a href="#">{{ list.distance }}m</a></td>
+                                <td class="text-center"><a href="#">{{ list.date }}</a></td>
+                                 <th class="text-center">{{list.distance|div:list.time}}m/h</th>
+
+
+                                 <td class="text-center"><a class='btn btn-info btn-xs' href="{% url 'list-update' list.id %}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="{% url 'list-delete' list.id %}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                            </tr>
+                      {% endfor %}
+
+                   </tbody>
+                </table>
+           </div>
+        </div>
+        <div class="col-md-2 filtern">
+
+            <form method="get">
+                {% csrf_token %}
+              <h4 >filtern by date</h4>
+                <label>start_date:
+                    <input type="date"  name="start_date"></input>
+                </label><br>
+
+                 <label>end_date:
+                    <input type="date"  name="end_date"></input>
+                </label><br><br>
+                <input type="submit" name="filter" class="backcolor text-center"></input>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
